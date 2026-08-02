@@ -42,3 +42,22 @@ if (groupBtn) {
         console.log("Opening WhatsApp Group...");
     });
 }
+import { auth } from "./firebase.js";
+import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+
+const signupBtn = document.getElementById("signupBtn");
+
+if (signupBtn) {
+  signupBtn.addEventListener("click", async () => {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      alert("✅ Account Created Successfully!");
+      window.location.href = "login.html";
+    } catch (error) {
+      alert(error.message);
+    }
+  });
+}
