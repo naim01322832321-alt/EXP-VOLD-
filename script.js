@@ -61,3 +61,19 @@ if (signupBtn) {
     }
   });
 }
+import { auth } from "./firebase.js";
+import {
+  GoogleAuthProvider,
+  signInWithPopup
+} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+
+const provider = new GoogleAuthProvider();
+
+document.getElementById("googleLogin").addEventListener("click", async () => {
+  try {
+    await signInWithPopup(auth, provider);
+    window.location.href = "home.html";
+  } catch (error) {
+    alert(error.message);
+  }
+});
